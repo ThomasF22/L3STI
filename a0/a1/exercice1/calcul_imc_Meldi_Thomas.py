@@ -9,7 +9,7 @@ IMC = {'0': 'Rien',
        '30': 'surpoids',
        '35': 'obésité modéré',
        '40': 'obésité sévère',
-       '100': 'obésité morbide'}
+       math.inf: 'obésité morbide'}
 
 
 def message_imc(imcUtilisateur:float)->str:
@@ -17,7 +17,7 @@ def message_imc(imcUtilisateur:float)->str:
     listeDesImc=list(IMC.keys())
     count = 0
     message = ''
-    while imcUtilisateur > float(listeDesImc[count]) and imcUtilisateur < float(listeDesImc[-1]):
+    while imcUtilisateur > float(listeDesImc[count]):
         count +=1
     message = IMC.get(listeDesImc[count])
 
