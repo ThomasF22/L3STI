@@ -1,4 +1,5 @@
 import random 
+import math 
 
 # Exercice 1
 
