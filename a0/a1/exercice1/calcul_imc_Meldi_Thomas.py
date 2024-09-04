@@ -171,8 +171,6 @@ def age(date_naissance:str)->int:
     dateNaissanceList = date_naissance.split('/')
     if date_est_valide(int(dateNaissanceList[0]),int(dateNaissanceList[1]),int(dateNaissanceList[2])):
         dateDeNaissanceValide = date(int(dateNaissanceList[2]),int(dateNaissanceList[1]),int(dateNaissanceList[0]))
-        print(dateDeNaissanceValide)
-        print(dateAujourdhui)
         # Son anniversaire n'est pas encore passé
         if dateAujourdhui.month < dateDeNaissanceValide.month:
             ageUtilisateur = dateAujourdhui.year - dateDeNaissanceValide.year - 1
@@ -187,4 +185,21 @@ def age(date_naissance:str)->int:
         print('Date invalide')
     return ageUtilisateur
 
-print(' B', age('05/09/2020')) 
+#print(' B', age('05/09/2020')) 
+
+def est_majeur(date_naissance:str)->bool:
+    if age(date_naissance) >= 18:
+        return True
+    else:
+        return False
+    
+#print(est_majeur('01/01/2010'))
+
+def test_acces()->str:
+    date_naissance = input('Veuillez renseigner votre date de naissace (jj/mm/aaaa) :')
+    if est_majeur(date_naissance):
+        return "Bonjour, vous avez {} ans, Accès autorisé".format(age(date_naissance))
+    else:
+        return "Désolé, vous avez {} ans, Accès interdit".format(age(date_naissance))
+    
+print(test_acces())
