@@ -126,6 +126,7 @@ DICTMOIS = {
 }
 
 def date_est_valide(jour:int,mois:int,annee:int)-> bool:
+    """Vérifie si la date est valide (non valide si supérieur à la date d'aujourd'hui ou si date inexistante)"""
     dateValide = False
     try:
         dateUtilisateur = date(annee,mois,jour)
@@ -151,6 +152,7 @@ def date_est_valide(jour:int,mois:int,annee:int)-> bool:
 # print(date_est_valide(28,2,2023))
 
 def saisie_date_naissance()-> date:
+    """Demande à l'utilisateur de rentrer sa date et vérifie sa validité"""
     dateResultat = ''
     jour = int(input('Veuillez entrer un jour de naissance'))
     mois = int(input('Veuillez entrer un mois de naissance'))
@@ -166,6 +168,7 @@ def saisie_date_naissance()-> date:
 #print(saisie_date_naissance())
 
 def age(date_naissance:str)->int:
+    """Renvoie l'age de l'utilisateur en fonction de sa date de naissance et de la date d'aujourd'hui"""
     ageUtilisateur=0
     dateAujourdhui = date.today()
     dateNaissanceList = date_naissance.split('/')
@@ -175,10 +178,13 @@ def age(date_naissance:str)->int:
         if dateAujourdhui.month < dateDeNaissanceValide.month:
             ageUtilisateur = dateAujourdhui.year - dateDeNaissanceValide.year - 1
         elif dateAujourdhui.month == dateDeNaissanceValide.month:
+            # Son anniversaire est dans le mois mais pas encore passé
             if dateAujourdhui.day < dateDeNaissanceValide.day:
                 ageUtilisateur = dateAujourdhui.year - dateDeNaissanceValide.year - 1
+                # Son anniversaire est passé
             else:
                 ageUtilisateur = dateAujourdhui.year - dateDeNaissanceValide.year
+        # Calcul de l'age de l'utilisateur
         else:
             ageUtilisateur = dateAujourdhui.year - dateDeNaissanceValide.year
     else:
@@ -188,6 +194,7 @@ def age(date_naissance:str)->int:
 #print(' B', age('05/09/2020')) 
 
 def est_majeur(date_naissance:str)->bool:
+    """Renvoie vrai si l'utilisateur est majeur à partir de sa date de naissance"""
     if age(date_naissance) >= 18:
         return True
     else:
