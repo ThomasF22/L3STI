@@ -1,5 +1,7 @@
 import random 
 
+# Exercice 1
+
 IMC = {'0': 'Rien',
     '16.5': 'Dénutrition ou famine',
        '18.5': 'maigreur',
@@ -13,17 +15,13 @@ IMC = {'0': 'Rien',
 def message_imc(imcUtilisateur:float)->str:
     """Prend en paramètre un imc et renvoie son interprétation"""
     listeDesImc=list(IMC.keys())
-    count = 1
-    start = True
+    count = 0
     message = ''
-    # On parcours la liste des IMC pour déterminer l'interpretation correspondante
-    for e in IMC:
-        if float(listeDesImc[count - 1]) <= imcUtilisateur < float(listeDesImc[count]) and start == True:
-            start = False
-            message = IMC.get(listeDesImc[count])
-        count += 1
+    while imcUtilisateur > float(listeDesImc[count]) and imcUtilisateur < float(listeDesImc[-1]):
+        count +=1
+    message = IMC.get(listeDesImc[count])
+
     return message
-#print(message_imc(14))
 
 def test_imc():
     """Génère aléatoirement 10 IMC pour tester la fonction message_imc"""
@@ -32,3 +30,21 @@ def test_imc():
         print('Pour une IMC de : ', imcRandom , ' Vous êtes en : ', message_imc(imcRandom))
 
 test_imc()
+
+
+
+# Exercice 2
+
+def est_bissextile(annee:int)-> bool:
+    if annee % 4 == 0 and annee % 100 != 0:
+        return True
+    elif annee % 400 == 0:
+        return True
+    else:
+        return False
+
+def test_bissextile():
+    print(est_bissextile(2000))
+    print(est_bissextile(2100))
+    print(est_bissextile(2024))
+# test_bissextile()
