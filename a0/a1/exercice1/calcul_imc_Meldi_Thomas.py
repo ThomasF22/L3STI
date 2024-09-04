@@ -1,5 +1,6 @@
 import random 
 import math
+from datetime import date
 
 # Exercice 1
 
@@ -88,10 +89,102 @@ def solution_equation(a:float,b:float,c:float)-> str:
     elif delta == 0:
         message = 'Solution de l\'équation {} \n Racine unique : x = {}'.format(str_equation(a,b,c),racine_unique(a,b))
     else: 
-        message = '"Solution de l\'équation {} \n Deux racines : \n x1 = {} \n x2 = {}'.format(str_equation(a,b,c),racine_double(a,b,delta,1)
+        message = 'Solution de l\'équation {} \n Deux racines : \n x1 = {} \n x2 = {}'.format(str_equation(a,b,c),racine_double(a,b,delta,1)
         ,racine_double(a,b,delta,2))
     return message
 
 #print(solution_equation(2,1,0))
 
-#def equation(a:int,b:int,c:int):
+def equation(a:int,b:int,c:int):
+    print(solution_equation(a,b,c))
+
+#equation(2,1,0)
+
+def test_equation():
+    equation(1,1,1)
+    equation(2,1,0)
+    equation(2,-3,9/8)
+
+# test_equation()
+
+# Exercise 4
+
+# Mois : Jours maximum
+DICTMOIS = {
+    1: 31,
+    2: 28,
+    3: 31,
+    4: 30,
+    5: 31,
+    6: 30,
+    7: 31,
+    8: 31,
+    9: 30,
+    10: 31,
+    11: 30,
+    12: 31
+}
+
+def date_est_valide(jour:int,mois:int,annee:int)-> bool:
+    dateValide = False
+    try:
+        dateUtilisateur = date(annee,mois,jour)
+        if dateUtilisateur <= date.today():
+            if est_bissextile(dateUtilisateur.year):
+                if dateUtilisateur.month == 2 and 1 <= dateUtilisateur.day <= DICTMOIS.get(dateUtilisateur.month) +1 :
+                    dateValide = True
+                elif  1 <= dateUtilisateur.day <= DICTMOIS.get(dateUtilisateur.month) and dateUtilisateur.month != 2:
+                    dateValide = True
+                else:
+                    dateValide = False
+            else:
+                
+                if  1 <= dateUtilisateur.month <=12:
+                    if 1 <= dateUtilisateur.day <= DICTMOIS.get(dateUtilisateur.month):
+                        dateValide = True
+    except ValueError:
+        dateValide = False    
+   
+
+    return dateValide
+
+# print(date_est_valide(28,2,2023))
+
+def saisie_date_naissance()-> date:
+    dateResultat = ''
+    jour = int(input('Veuillez entrer un jour de naissance'))
+    mois = int(input('Veuillez entrer un mois de naissance'))
+    annee = int(input('Veuillez entrer une année de naissance'))
+    if date_est_valide(jour,mois,annee):
+
+        dateResultat = date(annee, mois, jour)
+    else:
+        dateResultat = 'Date de naissance invalide'
+
+    return dateResultat
+    
+#print(saisie_date_naissance())
+
+def age(date_naissance:str)->int:
+    ageUtilisateur=0
+    dateAujourdhui = date.today()
+    dateNaissanceList = date_naissance.split('/')
+    if date_est_valide(int(dateNaissanceList[0]),int(dateNaissanceList[1]),int(dateNaissanceList[2])):
+        dateDeNaissanceValide = date(int(dateNaissanceList[2]),int(dateNaissanceList[1]),int(dateNaissanceList[0]))
+        print(dateDeNaissanceValide)
+        print(dateAujourdhui)
+        # Son anniversaire n'est pas encore passé
+        if dateAujourdhui.month < dateDeNaissanceValide.month:
+            ageUtilisateur = dateAujourdhui.year - dateDeNaissanceValide.year - 1
+        elif dateAujourdhui.month == dateDeNaissanceValide.month:
+            if dateAujourdhui.day < dateDeNaissanceValide.day:
+                ageUtilisateur = dateAujourdhui.year - dateDeNaissanceValide.year - 1
+            else:
+                ageUtilisateur = dateAujourdhui.year - dateDeNaissanceValide.year
+        else:
+            ageUtilisateur = dateAujourdhui.year - dateDeNaissanceValide.year
+    else:
+        print('Date invalide')
+    return ageUtilisateur
+
+print(' B', age('05/09/2020')) 
