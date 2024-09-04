@@ -16,6 +16,7 @@ def message_imc(imcUtilisateur:float)->str:
     count = 1
     start = True
     message = ''
+    # On parcours la liste des IMC pour déterminer l'interpretation correspondante
     for e in IMC:
         if float(listeDesImc[count - 1]) <= imcUtilisateur < float(listeDesImc[count]) and start == True:
             start = False
