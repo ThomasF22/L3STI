@@ -1,5 +1,5 @@
 import random
-
+#TEST
 cpo = input("Voulez-vous jouer contre l'ordinateur (Max 5 parties) O/N ? " )
 if cpo != 'O' :
     if cpo != 'N' :
