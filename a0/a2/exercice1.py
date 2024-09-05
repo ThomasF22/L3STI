@@ -6,7 +6,7 @@ def sommeRange(listL:list)->int:
     return result
 # print(somme1([3,2,2]))
 
-
+# Cette fonction est pour moi la meilleure à utiliser
 def sommeForIn(listL:list)->int:
     """Renvoie la somme de la liste entrée (avec for in)"""
     result = 0
@@ -26,12 +26,14 @@ def sommeWhile(listL:list)->int:
 # print(somme3([1,1,7]))
 
 def moyenne(listL:list)->int:
+    """Renvoie la moyenne des entiers d'une liste"""
     resultat = 0
     if len(listL) != 0:
         resultat = sommeForIn(listL) / len(listL)
     return resultat
 
 def nb_supRange(listL,e)->int:
+    """Renvoie le nombre d'éléments d'une liste supérieur à e (avec for in range)"""
     count = 0
     nbSup=0
     for i in range(0, len(listL)):
@@ -41,6 +43,7 @@ def nb_supRange(listL,e)->int:
     return nbSup
 
 def nb_supForIn(listL,e)->int:
+    """Renvoie le nombre d'éléments d'une liste supérieur à e (avec for in)"""
     nbSup = 0
     for elmt in listL:
         if elmt > e:
@@ -48,14 +51,30 @@ def nb_supForIn(listL,e)->int:
     return nbSup
 
 def moy_sup(listL,e)->int:
+    """Renvoie la moyenne des éléments d'une liste qui sont supérieur à e"""
+    if listL == []:
+        print('Liste vide!')
     listSup = []
     for elmt in listL:
         if elmt > e:
-            listSup.append(e)
-    return listSup
+            listSup.append(elmt)
+    moyenneSup = moyenne(listSup)
+    return moyenneSup
+
+def val_max(listL:list)->int:
+    """Renvoie l'entier maximum d'une liste"""
+    max = 0
+    for elmt in listL:
+        if max <= elmt:
+            max = elmt
+    return max
+
+def ind_max(listL:list)->int:
+    valMax = val_max(listL)
+    return listL.index(valMax)
 
 def test_exercice1()->str:
-    """Renvoie deux test de la fonction somme1 avec une liste vide et non vide rerspectivement."""
+    """Renvoie des test de chaque fonctions avec une ou plusieurs listes pertinantes."""
     print("TEST SOMME")
     #test liste vide
     print("Test liste vide : ", sommeRange([]))
@@ -69,6 +88,10 @@ def test_exercice1()->str:
     print("Test nombre sup avec Range : ", nb_supRange([1,2,6,9,4],4))
 
     print("Test moyenne sup : ", moy_sup([1,3,10,5],4))
+
+    print("Test valeur max : ", val_max([1,0,20,36,9]))
+
+    print("Test indice max : ", ind_max([1,0,20,36,9]))
 
 test_exercice1()
     
