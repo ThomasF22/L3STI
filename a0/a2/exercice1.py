@@ -25,24 +25,22 @@ def sommeWhile(listL:list)->int:
     return result 
 # print(somme3([1,1,7]))
 
-def moyenne(listL:list)->int:
+def moyenne(listL:list)->float:
     """Renvoie la moyenne des entiers d'une liste"""
     resultat = 0
     if len(listL) != 0:
         resultat = sommeForIn(listL) / len(listL)
     return resultat
 
-def nb_supRange(listL,e)->int:
+def nb_supRange(listL:list,e:int)->int:
     """Renvoie le nombre d'éléments d'une liste supérieur à e (avec for in range)"""
-    count = 0
     nbSup=0
     for i in range(0, len(listL)):
-        if listL[count] > e:
+        if listL[i] > e:
             nbSup += 1
-            count += 1
     return nbSup
 
-def nb_supForIn(listL,e)->int:
+def nb_supForIn(listL:list,e:int)->int:
     """Renvoie le nombre d'éléments d'une liste supérieur à e (avec for in)"""
     nbSup = 0
     for elmt in listL:
@@ -50,7 +48,7 @@ def nb_supForIn(listL,e)->int:
             nbSup += 1
     return nbSup
 
-def moy_sup(listL,e)->int:
+def moy_sup(listL:list,e:int)->float:
     """Renvoie la moyenne des éléments d'une liste qui sont supérieur à e"""
     if listL == []:
         print('Liste vide!')
@@ -63,6 +61,8 @@ def moy_sup(listL,e)->int:
 
 def val_max(listL:list)->int:
     """Renvoie l'entier maximum d'une liste"""
+    if listL == []:
+        return -1
     max = 0
     for elmt in listL:
         if max <= elmt:
