@@ -68,3 +68,4 @@ print(est_injective(listFonctionInj))
 print(est_surjective(listFonctionSurj))
 
 print(est_bijective(listFonctionBij))
+
