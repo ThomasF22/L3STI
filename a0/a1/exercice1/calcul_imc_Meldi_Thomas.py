@@ -13,7 +13,6 @@ IMC = {0: 'Rien',
        40: 'obésité sévère',
        math.inf: 'obésité morbide'}
 
-
 def message_imc(imcUtilisateur:float)->str:
     """Prend en paramètre un imc et renvoie son interprétation"""
     # listeDesImc=list(IMC.keys())
