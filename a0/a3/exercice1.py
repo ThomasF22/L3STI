@@ -11,7 +11,6 @@
 
 # print(full_name('nicolai roshan'))
 
-import re
 
 # (1)
 
@@ -27,8 +26,8 @@ def full_name(nomPrenom:str)->str:
 
     nom, prenom =  nomPrenom.split()
     nomMaj = nom.upper() # NICOLAI
-    l = prenom[0] # R
-    lMaj = l.upper()
+    firstLetter = prenom[0] # R
+    lMaj = firstLetter.upper()
     nouveauPrenom = prenom[1:] #oshan
     return   nomMaj + ' ' + lMaj + nouveauPrenom # NICOLAI + R + oshan
 
@@ -43,21 +42,13 @@ def is_mail(mail:str)->tuple:
     code1 = 0
     code2 = 0
     codeRenvoi = (0,0)
-    if '@' in mail:
-        corpMail , domaineMail = mail.split('@')
-        if not '.' in domaineMail:
-            code2 = 0 , 4  # pas de .
-        if domaineMail != 'univ-corse.fr':  
-            code2, 3 #domaine invalide
-    else:
-        code2 = 0 , 2 # Pas de @
-
 
     if '@' in mail:
         corpMail , domaineMail = mail.split('@')
         if '.' in domaineMail:
+            # NON ce n'est pas juste pour univ-corse!!
             if domaineMail == 'univ-corse.fr':
-                if '..' not in mail and corpMail[0] and domaineMail[0] != '.' and corpMail[-1] and domaineMail[-1] != '.' :
+                if '..' not in mail and corpMail[0] != '.' and domaineMail[0] != '.' and corpMail[-1] != '.' and domaineMail[-1] != '.' :
                     code1 = 1 # OK
                 else:
                     code2 = 1 # corp invalide : 2 points consécutifs où un point au début ou à la fin du corps
