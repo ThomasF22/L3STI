@@ -65,14 +65,14 @@ listePairs= [1,5,2,3,10,720,24,33,109,204]
 print('Liste pairs :' , listPairs(listePairs))
 
 
-# listeDeListe=[[0,1],[2,3],[4],[6,7]]
-# def concat_list(lstList:list)->list:
-#     lstConcat=[]
-#     if lstList == []:
-#         return []
-#     else:
+listeDeListe=[[0,1],[2,3],[4],[6,7]]
+def concat_list(lstList:list)->list:
+    lstConcat=[]
+    if lstList == []:
+        return []
+    else:
         
-# print(concat_list(listeDeListe))
+print(concat_list(listeDeListe))
 
 
 
