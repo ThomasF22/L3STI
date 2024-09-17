@@ -18,8 +18,31 @@ def places_lettre(charInput:str, wordInput:str)->list:
     return listeIndexLettres
 
 def outputStr(mot:str , lpos:list)->str:
-    
+    output = ''
+    count = 0
+    # for char in mot:
+    #     if char == lpos[count]:
+    #         output += char
+    #     else:
+    #         output += ''
 
+
+    listeChars= []
+    for lettre in mot:
+        while lettre != lpos[count]:
+            output += '-'
+        else:
+            output += lettre
+        count += 1
+
+    return output
+
+
+# placesLettre('b','bonjour')-> [0]
+# placesLettre('m','maman')-> [0,2]
+
+# outputStr('bonjour',[])-> '_ _ _ _ _ _ _'
+# outputStr('bonjour',[0,1,4])-> 'b o _ _ o _ _'
 
 def main():
     assert places_lettre('b' , 'bonjour') == [0]
@@ -28,8 +51,13 @@ def main():
 
     print(places_lettre('b' , 'bonjour'))
 
+    print(outputStr('bonjour', [0,2,3]))
+
 if __name__ == "__main__":
     print("Le script est exécuté directement.")
     main()
 else:
     print("Le script est importé comme un module.")
+
+
+
